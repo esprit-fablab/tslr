@@ -1,7 +1,7 @@
 {
-  "name": "tslr",
+  "name": "tslr-client",
   "version": "0.0.0",
-  "description": "Small description for tslr goes here",
+  "description": "tslr client",
   "license": "MIT",
   "author": "",
   "directories": {
