@@ -1,8 +1,23 @@
-const app = require('http').createServer();
-const io = require('socket.io')(app);
+const http = require('http');
 
-app.listen(4242);
+const hostname = '0.0.0.0';
+const port = 4242;
 
-io.on('connection', socket => {
-    socket.emit('hello');
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+});
+
+const io = require('socket.io')(server);
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
 });
