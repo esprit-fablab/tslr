@@ -4,6 +4,5 @@
     <file url="PROJECT" libraries="{bootstrap, jquery-3.1.1.slim, tether}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
     <includedPredefinedLibrary name="Node.js Core" />
-    <excludedPredefinedLibrary name="tslr/node_modules" />
   </component>
 </project>
