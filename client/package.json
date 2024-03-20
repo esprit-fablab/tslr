@@ -1,7 +1,7 @@
 {
   "name": "tslr-client",
   "version": "0.0.0",
-  "description": "tslr client",
+  "description": "Small description for tslr-client goes here",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -35,9 +35,7 @@
     "ember-resolver": "^2.0.3",
     "ember-source": "~2.12.0",
     "ember-welcome-page": "^2.0.2",
-    "glob": "^4.5.3",
-    "loader.js": "^4.2.3",
-    "morgan": "^1.8.1"
+    "loader.js": "^4.2.3"
   },
   "engines": {
     "node": ">= 4"

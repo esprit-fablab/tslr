@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'tslr',
+    modulePrefix: 'tslr-client',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
