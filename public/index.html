@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-9">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<div class="container">
+		<div id="part-1">
+			<h1>Préparation <small class="text-muted">Distribution des rôles</small></h1>
+			<p class="lead">Afin de distribuer les rôles, veuillez cliquer sur les boutons des joueurs afin d’indiquer leurs participations.</p>
+			<div class="row">
+				<div class="col">
+					<h4>Consommateurs</h4>
+					<ul id="c" class="list-group"></ul>
+				</div>
+				<div class="col">
+					<h4>Producteurs</h4>
+					<ul id="p" class="list-group"></ul>
+				</div>
+			</div>
+			<p class="lead">Une fois les rôles distribués, cliquez sur ce bouton.</p>
+			<button type="button" class="btn btn-lg btn-primary" id="start" disabled>Terminer la distribution des rôles</button>
+		</div>
+		<div id="part-2">
+			<h1>Pause <small class="text-muted">Le jeu est en pause</small></h1>
+			<p class="lead">Le jeu est en pause. Vous pouvez prendre le temps de régler les paramètres du prochain tour.</p>
+			<p class="lead">Une fois les paramètres réglés, cliquez sur ce bouton.</p>
+			<button type="button" class="btn btn-lg btn-primary" id="next">Jouer</button>
+			<button type="button" class="btn btn-lg btn-warning" id="mj">Utiliser une carte maître du jeu</button>
+			<button type="button" class="btn btn-lg btn-danger" id="event">Déclencher un événement</button>
+		</div>
+		<div id="part-3">
+			<h1>Surveillance <small class="text-muted">Un tour est en cours</small></h1>
+			<p class="lead">Une fois ce tour terminé, le jeu va automatiquement passer au prochain tour. Vous pouvez demander une pause afin d’empêcher cela.</p>
+			<button type="button" class="btn btn-lg btn-success" id="pause">Demander une pause</button>
+			<button type="button" class="btn btn-lg btn-danger" id="event">Déclencher un événement au prochain tour</button>
+		</div>
+	</div>
+
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="tether.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="socket.io.min.js"></script>
+	<script src="panel.js"></script>
+</body>
+</html>

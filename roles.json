@@ -1,0 +1,52 @@
+{
+	"p": [
+		{
+			"name": "Pétrole",
+			"max": 7
+		}, {
+			"name": "Charbon",
+			"max": 34
+		}, {
+			"name": "Gaz",
+			"max": 12
+		}, {
+			"name": "Hydraulique",
+			"max": 12
+		}, {
+			"name": "Photovoltaique",
+			"max": 18
+		}, {
+			"name": "Biomasse",
+			"max": 13
+		}, {
+			"name": "Éolienne",
+			"max": 36
+		}, {
+			"name": "Hydrogène",
+			"max": 8
+		}
+	], "c": [
+		{
+			"name": "Énergie",
+			"ratio": 3
+		}, {
+			"name": "Industriels",
+			"ratio": 2
+		}, {
+			"name": "Résidences",
+			"ratio": 2
+		}, {
+			"name": "Commerces",
+			"ratio": 2
+		}, {
+			"name": "Agriculteurs",
+			"ratio": 1
+		}, {
+			"name": "TIC",
+			"ratio": 2
+		}, {
+			"name": "Agroalimentaire",
+			"ratio": 1
+		}
+	]
+}

@@ -1,0 +1,25 @@
+{
+  "registers": {
+    "nuclear": {
+      "lPin": 7,
+      "cPin": 1,
+      "dPin": 8
+    },
+    "events": {
+      "lPin": 23,
+      "cPin": 25,
+      "dPin": 24
+    },
+    "bargraphs": {
+      "lPin": 0,
+      "cPin": 0,
+      "dPin": 0
+    }
+  },
+  "stepper": {
+    "pinA": 0,
+    "pinB": 0,
+    "pinC": 0,
+    "pinD": 0
+  }
+}
