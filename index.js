@@ -1,18 +1,18 @@
 /**
- * Main source file of the TSLR server.
- * This file manages the game, and manages the link between the arduino, the
- * leds, the buttons, and the web panel.
- */
+* Main source file of the TSLR server.
+* This file manages the game, and manages the link between the arduino, the
+* leds, the buttons, and the web panel.
+*/
 
 /**
- * Loading the configuration
- */
+* Loading the configuration
+*/
 
- const config = require('./config');
+const config = require('./config');
 
 /**
- * Import NPM libraries
- */
+* Import NPM libraries
+*/
 
 const express = require('express');
 const app = express();
@@ -22,8 +22,8 @@ const Button = require('gpio-button');
 const motor = require("stepper-wiringpi").setup(2048, config.stepper.pinA, config.stepper.pinB, config.stepper.pinC, config.stepper.pinD);
 
 /**
- * Project components
- */
+* Project components
+*/
 
 const screens = require('./screens');
 const leds = require('./leds');
@@ -31,19 +31,19 @@ const roles = require('./roles.json');
 const Player = require('./Player');
 
 /**
- * Miscellaneous
- */
+* Miscellaneous
+*/
 
 Number.prototype.map = function (in_min, in_max, out_min, out_max) {
-  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 };
 
 /**
- * Stepper motor management:
- * The engine must turn until it reaches the endstop, then make a half-turn
- * forward (2048 steps for a revolution, so 1024 steps for a half turn) in order
- * to be located at the right starting position.
- */
+* Stepper motor management:
+* The engine must turn until it reaches the endstop, then make a half-turn
+* forward (2048 steps for a revolution, so 1024 steps for a half turn) in order
+* to be located at the right starting position.
+*/
 
 motor.currentPos = null;
 motor.setSpeed(15);
@@ -59,15 +59,15 @@ endstop.once('press', () => {
 });
 
 /**
- * Connection to push buttons
- */
+* Connection to push buttons
+*/
 
 const b1 = new Button('button17');
 const b2 = new Button('button4');
 
 /**
- * Generating players and listening to buttons
- */
+* Generating players and listening to buttons
+*/
 
 const players = [new Player(b1, true), new Player(b2, false)];
 
@@ -104,19 +104,19 @@ players.forEach((p, i) => {
 });
 
 /**
- * Configuring the web interface
- */
+* Configuring the web interface
+*/
 
 server.listen(3000);
 
 app.use('/', express.static('public'));
 
 /**
- * Game management
- */
+* Game management
+*/
 
 io.on('connection', socket => {
-  console.log('Panel online');
+	console.log('Panel online');
 
 	socket.emit('roles', roles);
 
@@ -144,11 +144,11 @@ io.on('connection', socket => {
 	});
 
 	socket.on('next', () => {
-    nextTurn();
+		nextTurn();
 	});
 
 	socket.on('pause', () => {
-    pauseNext = true;
+		pauseNext = true;
 	});
 
 	socket.on('event', () => {
@@ -161,8 +161,8 @@ io.on('connection', socket => {
 });
 
 /**
- * Electrical network balance
- */
+* Electrical network balance
+*/
 
 let b = {
 	c: 10,
@@ -180,8 +180,8 @@ let b = {
 }
 
 /**
- * Main duties
- */
+* Main duties
+*/
 
 function canStart() {
 	let can = true;
@@ -202,47 +202,47 @@ function check() {
 	if (!b.isBalanced()) {
 		// TODO: gérer la fin de la partie
 		console.log('The balance is broken!');
-    endTurn(true);
+		endTurn(true);
 	}
 }
 
 function nextTurn() {
-  io.sockets.emit('next');
-  leds.nuclear.clear();
-  pause = false;
-  nuclearInterval = setInterval(() => {
-    leds.nuclear.inc();
-    b.nuclear++;
-    check();
-    if (b.nuclear === 60) {
-      endTurn();
-    }
-  }, 1000);
+	io.sockets.emit('next');
+	leds.nuclear.clear();
+	pause = false;
+	nuclearInterval = setInterval(() => {
+		leds.nuclear.inc();
+		b.nuclear++;
+		check();
+		if (b.nuclear === 60) {
+			endTurn();
+		}
+	}, 1000);
 }
 
 function endTurn(problem = false) {
-  clearInterval(nuclearInterval);
-  if (problem) {
-    pause = true;
-    io.sockets.emit('pause');
-  } else {
-    if (pauseNext) {
-      pause = true;
-      pauseNext = false;
-      io.sockets.emit('pause');
-    } else {
-      nextTurn();
-    }
-  }
+	clearInterval(nuclearInterval);
+	if (problem) {
+		pause = true;
+		io.sockets.emit('pause');
+	} else {
+		if (pauseNext) {
+			pause = true;
+			pauseNext = false;
+			io.sockets.emit('pause');
+		} else {
+			nextTurn();
+		}
+	}
 }
 
 /**
- * Stepper motor loop:
- * This loop is infinite, it uses the scale in order to know where to go. To do
- * this, it retains the current position and moves one step forward or backward
- * until it reaches the requested position.
- * This makes it possible to react to sudden changes of direction.
- */
+* Stepper motor loop:
+* This loop is infinite, it uses the scale in order to know where to go. To do
+* this, it retains the current position and moves one step forward or backward
+* until it reaches the requested position.
+* This makes it possible to react to sudden changes of direction.
+*/
 
 (function move() {
 	if (playing) {
