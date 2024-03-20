@@ -1,0 +1,11 @@
+body {
+    padding-top: 2rem;
+}
+
+#arduino-alert-1 p, #arduino-alert-2 p, #games-alert p {
+    margin-bottom: 0;
+}
+
+#arduino-alert-2 {
+    display: none;
+}
