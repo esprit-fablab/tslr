@@ -20,6 +20,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    emberPouch: {
+      locadDb: 'tslr',
+      remoteDb: '127.0.0.1:5984/tslr'
     }
   };
 
